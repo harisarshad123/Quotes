@@ -15,10 +15,12 @@ class NextQuoteAction : ActionCallback {
     ) {
         val dataStore = PreferencesGlanceStateDefinition.getDataStore(context, glanceId.toString())
 
+        // Manual trigger - useful for testing
         dataStore.edit { prefs ->
             val current = prefs[PreferencesKeys.CurrentQuoteIndex] ?: 0
             prefs[PreferencesKeys.CurrentQuoteIndex] = current + 1
         }
+
         QuoteWidget().update(context, glanceId)
     }
 }
